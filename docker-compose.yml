@@ -2,9 +2,9 @@ version: '3.1'
 
 services:
   springboot:
-    image: 111992/spring-boot-mongo:latest
+    image: postgres
     restart: always
-    container_name: springboot
+    container_name: postgrescontainer
     ports:
       - 9090:8080
     working_dir: /opt/app
