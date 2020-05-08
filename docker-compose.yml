@@ -1,29 +1,18 @@
 version: '3.1'
 
 services:
-  springboot:
+
+  db:
     image: postgres
     restart: always
-    container_name: postgrescontainer
-    ports:
-      - 9090:8080
-    working_dir: /opt/app
-    depends_on:
-      - mongo
-    deploy:
-      replicas: 2
-      update_config:
-        parallelism: 1
-        delay: 20s
-      restart_policy:
-        condition: on-failure
-  mongo:
-    image: mongo
-    container_name: springboot-mongo
-    volumes:
-      - data:/data/db
-      - data-bkp:/data/bkp
+    environment:
+      POSTGRES_PASSWORD: example
+
+  adminer:
+    image: adminer
     restart: always
+    ports:
+      - 8080:8080
 volumes:
   data:
     external: true
